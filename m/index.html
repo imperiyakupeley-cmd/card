@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Империя Купелей — визитка (мобильный вариант · черновик)</title>
+<meta name="description" content="Электронная визитка компании «Империя Купелей»: купели, бассейны, погреба и укрытия. Напишите нам или позвоните — ежедневно 9:00–20:00.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="sign-white.svg" type="image/svg+xml">
+<meta name="theme-color" content="#141518">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#141518; --bg-2:#1b1c20; --bg-3:#0e0f12;
+  --gold:#d9a441; --gold-l:#e8c56a; --gold-d:#c9962e;
+  --text:#f2f2f2; --muted:#9b9ea4;
+  --line-g:rgba(217,164,65,.38); --line-g2:rgba(217,164,65,.2);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scrollbar-gutter:stable}
+body{font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.55;-webkit-font-smoothing:antialiased;min-height:100vh}
+.wrap{max-width:480px;margin:0 auto;padding:0 16px}
+.grad{background:linear-gradient(92deg,var(--gold-l) 10%,var(--gold) 55%,var(--gold-d) 95%);-webkit-background-clip:text;background-clip:text;color:transparent}
+a{color:inherit}
+a:focus-visible,summary:focus-visible,button:focus-visible{outline:2px solid var(--gold-l);outline-offset:3px;border-radius:6px}
+
+.draftbar{position:sticky;top:0;z-index:100;background:#3d3423;color:#fff;text-align:center;font-size:12px;padding:6px 12px;font-weight:600}
+
+/* ── мобильная шапка: лого + круглая кнопка звонка ── */
+header{border-bottom:1px solid var(--line-g2);background:rgba(20,21,24,.92)}
+.hbar{display:flex;align-items:center;gap:10px;padding:10px 16px;max-width:480px;margin:0 auto}
+.hbar .logo{display:flex;align-items:center;gap:10px;min-width:0;text-decoration:none}
+.hbar .logo img{width:38px;height:45px;flex:none}
+.hbar .vt{border-left:1px solid var(--line-g);padding-left:10px}
+.hbar .nm{font-size:12.5px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;line-height:1.3}
+.hbar .ds{display:none;font-size:12px;color:var(--muted);line-height:1.35;margin-top:2px}
+.phone{margin-left:auto;flex:none;display:flex;align-items:center;justify-content:center;gap:9px;
+  width:44px;height:44px;border:1px solid var(--line-g);border-radius:50%;text-decoration:none;
+  transition:border-color .15s,background-color .15s}
+.phone:hover{border-color:var(--gold-l);background:var(--bg-2)}
+.phone svg{width:18px;height:18px;stroke:var(--gold-l);fill:none;stroke-width:1.7;flex:none}
+.phone .col{display:none}
+
+/* ── первый блок: короткий заголовок, действия, фото ── */
+.hero{padding:18px 0 0}
+.hero .eyebrow{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-l)}
+.hero h1{font-size:clamp(26px,7.4vw,34px);font-weight:800;text-transform:uppercase;letter-spacing:.015em;line-height:1.12;margin:10px 0 8px}
+.hero .sub{font-size:13.5px;color:#d6d7da}
+.hero .ln{width:44px;height:2px;background:linear-gradient(90deg,var(--gold-l),var(--gold-d));margin-top:14px;border-radius:2px}
+.cta{display:flex;flex-direction:column;gap:10px;margin-top:16px}
+.cta2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;border-radius:14px;min-height:54px;
+  padding:12px 16px;text-decoration:none;font-weight:800;font-size:14.5px;letter-spacing:.02em;transition:transform .12s}
+.btn:active{transform:scale(.985)}
+.btn svg{width:19px;height:19px;flex:none}
+.btn .col{display:flex;flex-direction:column;align-items:flex-start;gap:1px;text-align:left}
+.btn .s{display:block;font-size:10.5px;font-weight:600;opacity:.75;letter-spacing:.01em}
+.btn-gold{background:linear-gradient(135deg,var(--gold-l),var(--gold-d));color:#171204;box-shadow:0 10px 26px rgba(217,164,65,.2)}
+.btn-gold svg{stroke:#171204;fill:none;stroke-width:2}
+.btn-out{border:1px solid var(--line-g);color:var(--text)}
+.btn-out svg{stroke:var(--gold-l);fill:none;stroke-width:1.7}
+.btn-out:hover{border-color:var(--gold-l);background:var(--bg-2)}
+
+/* фото изделия целиком, без обрезки и искажения */
+.hero-r{padding:0 0 4px}
+.hero-r img{display:block;width:min(82%,340px);height:auto;margin:14px auto 0;
+  border-radius:16px;border:1px solid var(--line-g2)}
+
+/* ── «Написать нам»: раскрывающийся выбор мессенджера (в потоке) ── */
+.write>summary{list-style:none;cursor:pointer;width:100%;-webkit-tap-highlight-color:transparent}
+.write>summary::-webkit-details-marker{display:none}
+.write .chv{margin-left:4px;color:#171204;font-size:13px;font-weight:800;line-height:1;transition:transform .18s;display:inline-block}
+.write[open]>summary .chv{transform:rotate(180deg)}
+.write .menu{display:grid;gap:8px;padding:11px;margin-top:10px;border:1px solid var(--line-g);
+  border-radius:14px;background:var(--bg-2)}
+.write .menu a,.write .menu button{display:flex;align-items:center;gap:11px;padding:11px 12px;border:1px solid var(--line-g2);border-radius:11px;
+  text-decoration:none;color:var(--text);font-weight:800;font-size:13.5px;min-height:48px;background:transparent}
+.write .menu button{cursor:pointer;font-family:inherit;width:100%;text-align:left}
+.write .menu a:hover,.write .menu button:hover{border-color:var(--gold-l)}
+.write .menu a svg,.write .menu button svg{width:21px;height:21px;stroke:var(--gold-l);fill:none;stroke-width:1.7;flex:none}
+.write .menu .col{display:flex;flex-direction:column;align-items:flex-start;gap:2px;text-align:left;line-height:1.3}
+.write .menu .col span+span{font-size:11px;color:var(--muted);font-weight:600}
+/* Telegram/MAX: прямых ссылок личного чата нет — общий блок «номер + копирование» */
+.write .numbox{margin-top:4px;padding:12px 2px 2px;border-top:1px solid var(--line-g2);display:grid;gap:8px;justify-items:start;border-radius:8px}
+.write .numbox.nb-flash{animation:nb-flash 1.15s ease}
+@keyframes nb-flash{0%,100%{background:transparent}30%,65%{background:rgba(217,164,65,.13)}}
+.write .nb-app{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-l)}
+.write .nb-num{font-size:18px;font-weight:800;letter-spacing:.02em;cursor:text;-webkit-user-select:all;user-select:all}
+.write .nb-copy{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line-g);border-radius:10px;background:transparent;
+  color:var(--text);font:inherit;font-weight:700;font-size:13px;min-height:44px;padding:9px 16px;cursor:pointer;
+  transition:border-color .15s,background-color .15s}
+.write .nb-copy:hover{border-color:var(--gold-l);background:var(--bg-3)}
+.write .nb-copy svg{width:15px;height:15px;stroke:var(--gold-l);fill:none;stroke-width:1.7;flex:none}
+.write .nb-copy.ok{border-color:var(--gold-l);color:var(--gold-l)}
+.write .nb-hint{font-size:11px;color:var(--muted);line-height:1.45;font-weight:500}
+
+/* ── секции ── */
+section{padding:22px 0 0}
+.sec-cap{font-size:10.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+
+/* преимущества: одна компактная строка */
+.adv{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line-g2);border-bottom:1px solid var(--line-g2)}
+.adv>div{padding:12px 4px;text-align:center}
+.adv>div+div{border-left:1px solid var(--line-g2)}
+.adv b{display:block;font-size:16px;font-weight:800;line-height:1.2}
+.adv span{display:block;font-size:10.5px;color:var(--muted);margin-top:2px;line-height:1.3}
+.adv .grad{font-size:19px}
+
+/* «Наша продукция»: три наглядных превью, всегда видны */
+.cats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.cat{display:block;text-decoration:none;color:var(--text);background:var(--bg-2);border:1px solid var(--line-g2);border-radius:12px;overflow:hidden;
+  transition:border-color .18s}
+.cat:hover{border-color:var(--gold-l)}
+.cat .ph{display:block}
+.cat .ph img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover}
+.cat .ph.kupel img{object-position:50% 30%}
+.cat .lb{display:flex;align-items:center;gap:4px;padding:8px 8px 9px}
+.cat .lb b{font-size:11px;font-weight:800;letter-spacing:.01em;white-space:nowrap}
+.cat .lb .sub{display:none}
+.cat .lb .ch{margin-left:auto;color:var(--gold-l);font-size:13px;font-weight:800;line-height:1}
+
+/* «Мы в соцсетях»: одна раскрывающаяся кнопка (на десктопе — открытый ряд карточек) */
+.socd-btn{display:flex;align-items:center;gap:11px;width:100%;min-height:54px;padding:12px 16px;
+  border:1px solid var(--line-g);border-radius:14px;background:var(--bg-2);color:var(--text);
+  font:inherit;font-weight:800;font-size:14.5px;letter-spacing:.02em;cursor:pointer;text-align:left;
+  transition:border-color .16s;-webkit-tap-highlight-color:transparent}
+.socd-btn:hover{border-color:var(--gold-l)}
+.socd-btn>svg{width:20px;height:20px;stroke:var(--gold-l);fill:none;stroke-width:1.7;flex:none}
+.socd-btn .col{display:flex;flex-direction:column;gap:1px;min-width:0}
+.socd-btn small{display:block;font-size:10.5px;font-weight:600;color:var(--muted);letter-spacing:.01em}
+.socd-btn .chv{margin-left:auto;color:var(--gold-l);font-size:15px;font-weight:800;line-height:1;transition:transform .18s}
+.socd-btn[aria-expanded="true"] .chv{transform:rotate(180deg)}
+.socd-menu{display:grid;gap:8px;margin-top:10px}
+.socd-menu[hidden]{display:none}
+.soc{display:flex;align-items:center;gap:11px;padding:11px 14px;border:1px solid var(--line-g2);border-radius:12px;background:var(--bg-2);
+  text-decoration:none;color:var(--text);min-height:50px;transition:border-color .16s}
+.soc:hover{border-color:var(--gold-l)}
+.soc svg{width:21px;height:21px;stroke:var(--gold-l);fill:none;stroke-width:1.7;flex:none}
+.soc .sc{min-width:0}
+.soc .sc b{display:block;font-size:13.5px;font-weight:800;line-height:1.25}
+.soc .sc small{display:block;font-size:10.5px;color:var(--muted);font-weight:600;line-height:1.3;margin-top:1px}
+
+/* ── футер ── */
+footer{margin-top:26px;border-top:1px solid var(--line-g2);background:var(--bg-3)}
+.fcols{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;padding:18px 0 6px;text-align:center}
+.fcols svg{width:18px;height:18px;stroke:var(--gold-l);fill:none;stroke-width:1.5;margin:0 auto 7px;display:block}
+.fcols b{display:block;font-size:10.5px;font-weight:700;line-height:1.45}
+.fcols span{display:block;font-size:9.5px;color:var(--muted);margin-top:2px;line-height:1.4}
+.fcols a{text-decoration:none}
+.fcols a:hover{color:var(--gold-l)}
+.fphone{display:flex;flex-direction:column;gap:8px;align-items:center;margin-top:12px;font-size:12.5px;font-weight:700}
+.fphone a{text-decoration:none}
+.fphone a:hover{color:var(--gold-l)}
+.fphone span{color:var(--muted);font-weight:600;font-size:10px;display:block;text-align:center}
+.fsite{text-align:center;font-size:11px;color:var(--muted);margin-top:12px}
+.fcopy{text-align:center;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);padding:14px 0 20px}
+
+@media (max-width:359px){
+  .cta2{grid-template-columns:1fr}
+  .adv{grid-template-columns:1fr}
+  .adv>div+div{border-left:none;border-top:1px solid var(--line-g2)}
+}
+
+/* ── десктоп ≥920px: раскладка наследует vizitka-v2 ── */
+@media (min-width:920px){
+  .wrap{max-width:1120px;padding:0 28px}
+  .hbar{max-width:1120px;padding:13px 28px;gap:14px}
+  .hbar .logo{gap:12px}
+  .hbar .logo img{width:38px;height:45px}
+  .hbar .vt{border-left:1px solid var(--line-g);padding-left:12px}
+  .hbar .nm{font-size:15px}
+  .hbar .ds{display:block}
+  .phone{width:auto;height:auto;border-radius:12px;padding:10px 16px;font-weight:800;font-size:14.5px;white-space:nowrap;justify-content:flex-start}
+  .phone .col{display:block;font-size:14.5px}
+  .phone small{display:block;font-size:10.5px;font-weight:600;color:var(--muted);letter-spacing:.01em}
+  .hero{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:48px;align-items:center;padding:34px 0 40px}
+  .hero .eyebrow{font-size:11px}
+  .hero h1{font-size:clamp(34px,3.6vw,50px);margin:14px 0 16px}
+  .hero .sub{font-size:16.5px;max-width:520px}
+  .hero .ln{width:48px;margin-top:18px}
+  .hero-r{padding:0}
+  .hero-r img{width:auto;max-width:100%;height:min(64vh,600px);max-height:min(64vh,600px);margin:0;border-radius:18px}
+  .cta{flex-direction:row;flex-wrap:wrap;gap:14px;margin-top:28px}
+  .cta2{display:contents}
+  .btn{min-height:56px;padding:14px 22px;font-size:15.5px;border-radius:14px}
+  .btn .s{font-size:11px}
+  .cta .btn-save{flex:1 1 100%}
+  .write .menu{padding:12px;gap:8px}
+  .write .menu a,.write .menu button{font-size:14px;min-height:48px}
+  section{padding:34px 0 0}
+  .sec-cap{font-size:11px;margin-bottom:18px}
+  .adv>div{padding:18px 10px}
+  .adv b{font-size:19px}
+  .adv span{font-size:12px;margin-top:3px}
+  .adv .grad{font-size:22px}
+  .cats{grid-template-columns:repeat(3,1fr);gap:18px}
+  .cat{border-radius:16px}
+  .cat .ph img{aspect-ratio:4/3}
+  .cat .ph.kupel img{object-position:50% 32%}
+  .cat .lb{gap:6px;padding:14px 16px}
+  .cat .lb b{font-size:17px}
+  .cat .lb .sub{display:block;font-size:12px;color:var(--muted);font-weight:600}
+  .cat .lb .ch{font-size:17px}
+  .socd-btn{display:none}
+  .socd-menu{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:0}
+  .socd-menu[hidden]{display:none}
+  .soc{flex-direction:row;align-items:center;min-height:0;padding:13px 16px;border-radius:14px}
+  .soc .sc b{font-size:14.5px}
+  .soc .sc small{font-size:11.5px;margin-top:2px}
+  footer{margin-top:44px}
+  .fcols{grid-template-columns:1fr 1fr 1fr;gap:16px;padding:26px 0 8px}
+  .fcols svg{width:19px;height:19px;margin-bottom:8px}
+  .fcols b{font-size:12.5px}
+  .fcols span{font-size:11.5px;margin-top:3px}
+  .fphone{flex-direction:row;justify-content:center;gap:26px;margin-top:12px;font-size:13.5px}
+  .fphone span{font-size:11.5px}
+  .fsite{font-size:12.5px;margin-top:14px}
+  .fcopy{font-size:10.5px;padding:18px 0 22px}
+}
+@media (min-width:920px) and (hover:hover){
+  .write{position:relative}
+  .write .menu{position:absolute;top:calc(100% + 10px);left:0;z-index:60;min-width:300px;margin-top:0;
+    box-shadow:0 14px 34px rgba(0,0,0,.42)}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important}
+}
+</style>
+</head>
+<body>
+<div class="draftbar">✏️ Мобильный вариант · черновик — страница на проверке, финальный адрес будет после одобрения</div>
+
+<header>
+  <div class="hbar">
+    <a class="logo" href="#top" aria-label="Империя Купелей — наверх">
+      <img src="sign-white.svg" alt="Логотип Империи Купелей">
+      <span class="vt">
+        <span class="nm grad">Империя Купелей</span>
+        <span class="ds">Производство купелей, бассейнов и погребов</span>
+      </span>
+    </a>
+    <a class="phone" href="tel:+78612132215" aria-label="Позвонить: +7 861 213-22-15, ежедневно 9:00–20:00">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>
+      <span class="col"><span>+7 861 213-22-15</span><small>ежедневно 9:00–20:00</small></span>
+    </a>
+  </div>
+</header>
+
+<main class="wrap" id="top">
+
+  <section class="hero" aria-label="О компании и связь">
+    <div class="hero-l">
+      <div class="eyebrow">Империя Купелей · собственное производство</div>
+      <h1>Дарим счастье<br><span class="grad">через изделия</span></h1>
+      <p class="sub">Купели, бассейны, погреба и укрытия из полипропилена, изделия из нержавеющей стали — всё производим сами.</p>
+      <div class="ln"></div>
+      <div class="cta">
+        <details class="write">
+          <summary class="btn btn-gold">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            <span class="col"><span>Написать нам</span><span class="s">выберите мессенджер — ответим быстро</span></span>
+            <span class="chv" aria-hidden="true">▾</span>
+          </summary>
+          <div class="menu">
+            <a href="https://wa.me/79933205565">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0zM9 9.5c0 3 2.5 5.5 5.5 5.5"/></svg>
+              <span class="col"><span>WhatsApp</span><span>+7 993 320-55-65</span></span>
+            </a>
+            <button type="button" data-app="Telegram">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 3L10.5 13.2M21 3l-6.8 17.4-3.7-7.2-7.5-3.4z"/></svg>
+              <span class="col"><span>Telegram</span><span>+7 993 320-55-65</span></span>
+            </button>
+            <button type="button" data-app="MAX">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 18.5v-12l5.2 7.6 5.2-7.6v12"/><path d="M19.5 6.5v12"/></svg>
+              <span class="col"><span>MAX</span><span>+7 993 320-55-65</span></span>
+            </button>
+            <div class="numbox" id="numbox">
+              <div class="nb-app">Единый номер для мессенджеров</div>
+              <b class="nb-num" title="Нажмите — номер выделится целиком">+7 993 320-55-65</b>
+              <button type="button" class="nb-copy" id="nbCopy">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2.2"/><path d="M5 14.5V6.5a2 2 0 0 1 2-2h8"/></svg>
+                <span id="nbCopyT">Скопировать номер</span>
+              </button>
+              <p class="nb-hint">WhatsApp откроет чат сразу. В Telegram и MAX найдите контакт по этому номеру и напишите — ответим быстро.</p>
+            </div>
+          </div>
+        </details>
+        <div class="cta2">
+          <a class="btn btn-out" href="tel:+78612132215">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>
+            <span>Позвонить</span>
+          </a>
+          <a class="btn btn-out btn-save" href="imperiya.vcf" download="Imperiya-Kupeley.vcf">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="8" r="3.6"/><path d="M4.5 20c.8-3.4 3-5.2 5.5-5.2s4.7 1.8 5.5 5.2"/><path d="M18.5 6.5v6M15.5 9.5h6"/></svg>
+            <span>Сохранить контакт</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-r">
+      <img src="photos/hero.webp" alt="Купель с подсветкой на террасе вечером — видны весь борт и чаша">
+    </div>
+  </section>
+
+  <section class="adv" aria-label="Опыт и преимущества">
+    <div><b class="grad">3000+</b><span>изделий за 8 лет</span></div>
+    <div><b>Собственное</b><span>производство</span></div>
+    <div><b>Доставка</b><span>по России</span></div>
+  </section>
+
+  <section aria-label="Наша продукция">
+    <div class="sec-cap">Наша продукция</div>
+    <div class="cats">
+      <a class="cat" href="https://imperia-kupeley.ru/">
+        <span class="ph kupel"><img src="photos/kupeli.webp" alt="Белая купель с подсветкой на деревянной террасе" loading="lazy" decoding="async"></span>
+        <span class="lb"><b>Купели</b><span class="sub">для дома и улицы</span><span class="ch" aria-hidden="true">›</span></span>
+      </a>
+      <a class="cat" href="https://imperia-kupeley.ru/">
+        <span class="ph"><img src="photos/basseyn.webp" alt="Полипропиленовый бассейн на участке" loading="lazy" decoding="async"></span>
+        <span class="lb"><b>Бассейны</b><span class="sub">из полипропилена</span><span class="ch" aria-hidden="true">›</span></span>
+      </a>
+      <a class="cat" href="https://pogreb.imperia-kupeley.ru/">
+        <span class="ph"><img src="photos/pogreb-interer-full.webp" alt="Погреб изнутри: полки с заготовками, ящики и лестница" loading="lazy" decoding="async"></span>
+        <span class="lb"><b>Погреба</b><span class="sub">каталог погребов</span><span class="ch" aria-hidden="true">›</span></span>
+      </a>
+    </div>
+  </section>
+
+  <section aria-label="Мы в соцсетях">
+    <div class="sec-cap soc-cap">Мы в соцсетях</div>
+    <div class="socd" id="socd">
+      <button type="button" class="socd-btn" id="socdBtn" aria-expanded="false" aria-controls="socdMenu">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9S14.5 18.4 12 21c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3z"/></svg>
+        <span class="col"><span>Мы в соцсетях</span><small>ВКонтакте · YouTube · Telegram · MAX</small></span>
+        <span class="chv" aria-hidden="true">▾</span>
+      </button>
+      <div class="socd-menu" id="socdMenu">
+        <a class="soc" href="https://vk.com/imperiya_kupeley" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h3c.5 3.5 2 6 3.5 6.5V7h3v4c1.5-.5 2.7-2.2 3.2-4H20c-.6 3-2 5.2-3.8 6.2C18 14.5 19.6 16.5 20.5 19h-3.2c-.7-2-2-3.6-3.8-4.2V19h-2.5C7.5 19 5 13.5 4 7z"/></svg>
+          <span class="sc"><b>ВКонтакте</b><small>группа компании</small></span>
+        </a>
+        <a class="soc" href="https://www.youtube.com/@Imperiya_kupeley" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.6" y="6" width="18.8" height="12.4" rx="3.4"/><path d="M10.3 9.6v5.2l4.8-2.6z"/></svg>
+          <span class="sc"><b>YouTube</b><small>видео о производстве</small></span>
+        </a>
+        <a class="soc" href="https://t.me/imperiya_kupeley" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 3L10.5 13.2M21 3l-6.8 17.4-3.7-7.2-7.5-3.4z"/></svg>
+          <span class="sc"><b>Telegram</b><small>канал компании</small></span>
+        </a>
+        <a class="soc" href="https://max.ru/id753612745180_biz" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 18.5v-12l5.2 7.6 5.2-7.6v12"/><path d="M19.5 6.5v12"/></svg>
+          <span class="sc"><b>MAX</b><small>канал компании</small></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fcols">
+      <div>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>
+        <b>Краснодарский край,<br>посёлок Южный,<br>ул. Новая, 33/21</b>
+      </div>
+      <div>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+        <b>Ежедневно<br>9:00–20:00</b>
+        <span>время московское</span>
+      </div>
+      <div>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9S14.5 18.4 12 21c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3z"/></svg>
+        <a href="https://imperia-kupeley.ru/"><b>imperia-kupeley.ru</b></a>
+        <span>купели и бассейны</span>
+        <a href="https://pogreb.imperia-kupeley.ru/"><b>pogreb.imperia-kupeley.ru</b></a>
+        <span>каталог погребов</span>
+      </div>
+    </div>
+    <div class="fphone">
+      <a href="tel:+78612132215"><span>Телефон</span>+7 861 213-22-15</a>
+      <a href="https://wa.me/79933205565"><span>WhatsApp</span>+7 993 320-55-65</a>
+    </div>
+    <div class="fsite">Визитка-черновик — мобильный вариант на проверке</div>
+  </div>
+  <div class="fcopy">© Империя Купелей</div>
+</footer>
+
+<script>
+(function(){
+  var NUM='+79933205565';
+  var box=document.getElementById('numbox'),copyBtn=document.getElementById('nbCopy'),copyT=document.getElementById('nbCopyT');
+  function resetCopy(){copyT.textContent='Скопировать номер';copyBtn.classList.remove('ok')}
+  /* Telegram/MAX: прямых ссылок личного чата нет — клик подсвечивает общий блок с номером */
+  document.querySelectorAll('.write .menu button[data-app]').forEach(function(b){
+    b.addEventListener('click',function(){
+      box.classList.remove('nb-flash');void box.offsetWidth;box.classList.add('nb-flash');
+      if(typeof box.scrollIntoView==='function')box.scrollIntoView({block:'nearest'});
+    });
+  });
+  copyBtn.addEventListener('click',function(){
+    function done(ok){copyT.textContent=ok?'Скопировано ✓':'Скопируйте вручную';copyBtn.classList.toggle('ok',ok);
+      if(ok)setTimeout(resetCopy,2600)}
+    function fallback(){try{var t=document.createElement('textarea');t.value=NUM;t.setAttribute('readonly','');
+      t.style.cssText='position:fixed;left:-9999px;top:0';document.body.appendChild(t);t.focus();t.select();
+      var ok=document.execCommand('copy');t.remove();done(ok)}catch(e){done(false)}}
+    if(navigator.clipboard&&navigator.clipboard.writeText&&window.isSecureContext){
+      navigator.clipboard.writeText(NUM).then(function(){done(true)},fallback)}else fallback();
+  });
+  /* details: aria-expanded + сброс подписи копии при закрытии */
+  document.querySelectorAll('details').forEach(function(d){
+    var s=d.querySelector('summary');if(!s)return;
+    s.setAttribute('aria-expanded',d.open?'true':'false');
+    d.addEventListener('toggle',function(){s.setAttribute('aria-expanded',d.open?'true':'false');
+      if(!d.open&&d.classList.contains('write'))resetCopy()});
+  });
+  /* «Мы в соцсетях»: раскрытие в потоке; на десктопе ряд карточек всегда открыт */
+  var mq=window.matchMedia('(min-width:920px)');
+  var socBtn=document.getElementById('socdBtn'),socMenu=document.getElementById('socdMenu');
+  function socSync(open){socMenu.hidden=!open;socBtn.setAttribute('aria-expanded',open?'true':'false')}
+  function socInit(){socSync(mq.matches?true:false)}
+  if(mq.addEventListener)mq.addEventListener('change',socInit);else if(mq.addListener)mq.addListener(socInit);
+  socInit();
+  socBtn.addEventListener('click',function(){socSync(socMenu.hidden)});
+  /* Esc и клик вне — закрыть раскрытые меню */
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){
+    document.querySelectorAll('details[open]').forEach(function(d){d.open=false});
+    socSync(false)}});
+  document.addEventListener('pointerdown',function(e){
+    document.querySelectorAll('details[open]').forEach(function(d){
+      if(!d.contains(e.target))d.open=false});
+    if(socMenu&&!socMenu.hidden&&!document.getElementById('socd').contains(e.target))socSync(false)});
+})();
+</script>
+<noscript><style>.write .menu button{display:none}</style></noscript>
+
+</body>
+</html>
